@@ -1,0 +1,202 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role, preferences and language settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["farmer", "citizen", "admin"] },
+        "language": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role", "language"]
+    },
+    "FarmerProfile": {
+      "title": "FarmerProfile",
+      "description": "Detailed agricultural profile for farmers",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "farmName": { "type": "string" },
+        "locationName": { "type": "string" },
+        "district": { "type": "string" },
+        "state": { "type": "string" },
+        "farmSizeAcres": { "type": "number" },
+        "soilType": { "type": "string" },
+        "waterSource": { "type": "string" },
+        "irrigationType": { "type": "string" },
+        "currentCrops": { "type": "string" },
+        "phone": { "type": "string" },
+        "showPhone": { "type": "boolean" },
+        "bio": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "farmName", "locationName"]
+    },
+    "ProduceListing": {
+      "title": "ProduceListing",
+      "description": "Harvested produce listing for citizen discovery",
+      "type": "object",
+      "properties": {
+        "farmerId": { "type": "string" },
+        "farmerName": { "type": "string" },
+        "farmName": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "pricePerUnit": { "type": "number" },
+        "currency": { "type": "string" },
+        "harvestDate": { "type": "string" },
+        "locationName": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["available", "sold", "unavailable"] },
+        "phone": { "type": "string" },
+        "showPhone": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["farmerId", "title", "quantity", "unit", "pricePerUnit", "locationName", "status"]
+    },
+    "CropRecommendation": {
+      "title": "CropRecommendation",
+      "description": "AI-generated crop recommendation for farmers",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "location": { "type": "string" },
+        "soilType": { "type": "string" },
+        "season": { "type": "string" },
+        "landSize": { "type": "number" },
+        "waterAvailability": { "type": "string" },
+        "recommendations": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "location", "recommendations"]
+    },
+    "CropScan": {
+      "title": "CropScan",
+      "description": "Crop health scan and pest/disease diagnosis record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "cropName": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "issueDetected": { "type": "string" },
+        "confidence": { "type": "number" },
+        "observedSymptoms": { "type": "string" },
+        "possibleCauses": { "type": "string" },
+        "recommendedSteps": { "type": "array" },
+        "severity": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "cropName", "issueDetected"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "System or user notifications",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string" },
+        "link": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "message", "isRead"]
+    },
+    "SavedItem": {
+      "title": "SavedItem",
+      "description": "Saved favorite farms or produce",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "targetId": { "type": "string" },
+        "type": { "type": "string", "enum": ["farm", "produce"] },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "targetId", "type"]
+    },
+    "FarmingHistoryItem": {
+      "title": "FarmingHistoryItem",
+      "description": "Farmer's seasonal history log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "year": { "type": "string" },
+        "season": { "type": "string" },
+        "cropName": { "type": "string" },
+        "areaAcres": { "type": "number" },
+        "harvestYield": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "season", "cropName"]
+    },
+    "ListingReport": {
+      "title": "ListingReport",
+      "description": "Citizen report of inappropriate listing",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "produceId": { "type": "string" },
+        "produceTitle": { "type": "string" },
+        "reason": { "type": "string" },
+        "details": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "reviewed", "resolved"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["reporterId", "produceId", "reason", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile document"
+    },
+    "/farmerProfiles/{userId}": {
+      "schema": { "$ref": "#/entities/FarmerProfile" },
+      "description": "Farmer profile details"
+    },
+    "/produceListings/{listingId}": {
+      "schema": { "$ref": "#/entities/ProduceListing" },
+      "description": "Public produce listings by farmers"
+    },
+    "/cropRecommendations/{recommendationId}": {
+      "schema": { "$ref": "#/entities/CropRecommendation" },
+      "description": "Farmer crop recommendations"
+    },
+    "/cropScans/{scanId}": {
+      "schema": { "$ref": "#/entities/CropScan" },
+      "description": "Farmer crop health scans"
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "User notifications"
+    },
+    "/savedItems/{savedId}": {
+      "schema": { "$ref": "#/entities/SavedItem" },
+      "description": "User saved farms and produce"
+    },
+    "/farmingHistory/{historyId}": {
+      "schema": { "$ref": "#/entities/FarmingHistoryItem" },
+      "description": "Farmer historical journey logs"
+    },
+    "/listingReports/{reportId}": {
+      "schema": { "$ref": "#/entities/ListingReport" },
+      "description": "Listing reports for moderation"
+    }
+  }
+}

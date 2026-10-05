@@ -1,0 +1,10 @@
+{
+  "name": "FarmWise",
+  "description": "FarmWise — Smarter Farming. Stronger Local Connections. AI-powered crop recommendations, health diagnostics, crop calendar, and direct local farm discovery.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
